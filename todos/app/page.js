@@ -1,7 +1,3 @@
-/*
-- So far: add a list. -> How to edit?
-*/
-
 "use client";
 import React, { useState } from "react";
 import List from "@components/List";
