@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useState } from "react";
+import Item from "./Item";
 
 const List = ({ name, id, onEditListName }) => {
   // List-related states:
@@ -10,7 +11,8 @@ const List = ({ name, id, onEditListName }) => {
 
   // Items-related states:
   const [items, setItems] = useState([]);   // Should we make them objects?!
-  const [input, setInputs] = useState("");
+  const [input, setInput] = useState("");
+  const [idCount, setIdCount] = useState(0);
 
   const handleEditList = (e) => {
     e.preventDefault();
@@ -20,6 +22,29 @@ const List = ({ name, id, onEditListName }) => {
       setEditInput("");
     }
   };
+
+  const handleItemSubmit = (e) => {
+    e.preventDefault();
+    const newItem = {
+      id: idCount,
+      value: input
+    }
+    setItems(prevItems => [...prevItems, newItem]);
+    setIdCount(idCount => idCount + 1);
+    setInput("");
+  }
+
+  const handleEditItem = (id, newValue) => {
+    setItems((prevItems) =>
+      prevItems.map((item) =>
+        item.id === id ? { ...item, value: newValue } : item
+      )
+    );
+  };
+
+  const handleDeleteItem = (id) => {
+    setItems((prevItems) => prevItems.filter((item) => item.id !== id));
+  }
 
   return (
     <div>
@@ -44,7 +69,30 @@ const List = ({ name, id, onEditListName }) => {
           <button onClick={() => setEditToggle(true)}>Edit</button>
         </>
       )}
-      // HERE, WE ADD THE items.map()
+
+      {items.map((item, index) => (
+        <div key={item.id}>
+          <Item 
+            value={item.value} 
+            id={item.id} 
+            onEditItemValue={handleEditItem} 
+          />
+          <button onClick={() => handleDeleteItem(item.id)}>Delete</button>
+        </div>
+      ))}
+      
+      <form onSubmit={handleItemSubmit}>
+        <input 
+          type="text"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          placeholder="Enter new item"
+          required
+        />
+        <button type="submit" disabled={!input.trim()}>
+          Add
+        </button>
+      </form>
     </div>
   );
 };
