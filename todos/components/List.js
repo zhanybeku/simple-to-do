@@ -48,9 +48,7 @@ const List = ({ name, id, onEditListName }) => {
 
   return (
     <div>
-      <h3>{name}</h3>
       {editToggle ? (
-        <>
           <form onSubmit={handleEditList}>
             <input
               type="text"
@@ -63,22 +61,21 @@ const List = ({ name, id, onEditListName }) => {
               Confirm
             </button>
           </form>
-        </>
       ) : (
         <>
+          <h3>{name}</h3>
           <button onClick={() => setEditToggle(true)}>Edit</button>
         </>
       )}
 
       {items.map((item, index) => (
-        <div key={item.id}>
           <Item 
+            key={item.id}
             value={item.value} 
             id={item.id} 
-            onEditItemValue={handleEditItem} 
+            onEditItemValue={handleEditItem}
+            onDeleteItem={handleDeleteItem}
           />
-          <button onClick={() => handleDeleteItem(item.id)}>Delete</button>
-        </div>
       ))}
 
       <form onSubmit={handleItemSubmit}>

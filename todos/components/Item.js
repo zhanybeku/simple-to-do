@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const Item = ({ value, id, onEditItemValue }) => {
+const Item = ({ value, id, onEditItemValue, onDeleteItem }) => {
   const [editToggle, setEditToggle] = useState(false);
   const [editInput, setEditInput] = useState("");
 
@@ -13,11 +13,14 @@ const Item = ({ value, id, onEditItemValue }) => {
     }
   }
 
+  const handleDeleteItem = (e) => {
+    e.preventDefault();
+    onDeleteItem(id);
+  }
+
   return (
     <div>
-      {value}
       {editToggle ? (
-        <>
           <form onSubmit={handleEditItem}>
             <input
               type="text"
@@ -30,10 +33,13 @@ const Item = ({ value, id, onEditItemValue }) => {
               Confirm
             </button>
           </form>
-        </>
       ) : (
-        <button onClick={() => setEditToggle(true)}>Edit</button>
+        <>
+          {value}
+          <button onClick={() => setEditToggle(true)}>Edit</button>
+        </>
       )}
+      <button onClick={handleDeleteItem}>Delete</button>
     </div>
   )
 }
