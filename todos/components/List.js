@@ -10,7 +10,7 @@ const List = ({ name, id, onEditListName }) => {
   const [editToggle, setEditToggle] = useState(false);
 
   // Items-related states:
-  const [items, setItems] = useState([]);   // Should we make them objects?!
+  const [items, setItems] = useState([]);
   const [input, setInput] = useState("");
   const [idCount, setIdCount] = useState(0);
 
@@ -80,7 +80,7 @@ const List = ({ name, id, onEditListName }) => {
           <button onClick={() => handleDeleteItem(item.id)}>Delete</button>
         </div>
       ))}
-      
+
       <form onSubmit={handleItemSubmit}>
         <input 
           type="text"
