@@ -1,4 +1,4 @@
-//import "@styles/globals.css";
+import "@styles/globals.css";
 
 export const metadata = {
   title: "To Do Lists",
@@ -9,9 +9,7 @@ const RootLayout = ({ children }) => {
   return (
     <html lang="en">
       <body>
-        <main className="app">
-          {children}
-        </main>
+        <main className="app">{children}</main>
       </body>
     </html>
   );

@@ -13,7 +13,7 @@ const Home = () => {
       id: idCount,
       name: input,
     };
-    setLists((current) => [...current, newList]);
+    setLists((current) => [newList, ...current]);
     setIdCount((count) => count + 1);
     setInput("");
   };
@@ -45,16 +45,18 @@ const Home = () => {
         </button>
       </form>
 
-      {lists.map((list, index) => (
-        <div key={list.id}>
-          <List
-            name={list.name}
-            id={list.id}
-            onEditListName={handleEditListName}
-          />
-          <button onClick={() => handleDeleteList(list.id)}>Delete</button>
-        </div>
-      ))}
+      <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2">
+        {lists.map((list, index) => (
+          <div key={list.id}>
+            <List
+              name={list.name}
+              id={list.id}
+              onEditListName={handleEditListName}
+            />
+            <button onClick={() => handleDeleteList(list.id)}>Delete</button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

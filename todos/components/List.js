@@ -27,12 +27,12 @@ const List = ({ name, id, onEditListName }) => {
     e.preventDefault();
     const newItem = {
       id: idCount,
-      value: input
-    }
-    setItems(prevItems => [...prevItems, newItem]);
-    setIdCount(idCount => idCount + 1);
+      value: input,
+    };
+    setItems((prevItems) => [...prevItems, newItem]);
+    setIdCount((idCount) => idCount + 1);
     setInput("");
-  }
+  };
 
   const handleEditItem = (id, newValue) => {
     setItems((prevItems) =>
@@ -44,23 +44,23 @@ const List = ({ name, id, onEditListName }) => {
 
   const handleDeleteItem = (id) => {
     setItems((prevItems) => prevItems.filter((item) => item.id !== id));
-  }
+  };
 
   return (
     <div>
       {editToggle ? (
-          <form onSubmit={handleEditList}>
-            <input
-              type="text"
-              value={editInput}
-              onChange={(e) => setEditInput(e.target.value)}
-              placeholder="Edit list name"
-              required
-            />
-            <button type="submit" disabled={!editInput.trim()}>
-              Confirm
-            </button>
-          </form>
+        <form onSubmit={handleEditList}>
+          <input
+            type="text"
+            value={editInput}
+            onChange={(e) => setEditInput(e.target.value)}
+            placeholder="Edit list name"
+            required
+          />
+          <button type="submit" disabled={!editInput.trim()}>
+            Confirm
+          </button>
+        </form>
       ) : (
         <>
           <h3>{name}</h3>
@@ -69,17 +69,17 @@ const List = ({ name, id, onEditListName }) => {
       )}
 
       {items.map((item, index) => (
-          <Item 
-            key={item.id}
-            value={item.value} 
-            id={item.id} 
-            onEditItemValue={handleEditItem}
-            onDeleteItem={handleDeleteItem}
-          />
+        <Item
+          key={item.id}
+          value={item.value}
+          id={item.id}
+          onEditItemValue={handleEditItem}
+          onDeleteItem={handleDeleteItem}
+        />
       ))}
 
       <form onSubmit={handleItemSubmit}>
-        <input 
+        <input
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
