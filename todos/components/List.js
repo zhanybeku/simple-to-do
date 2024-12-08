@@ -47,7 +47,7 @@ const List = ({ name, id, onEditListName }) => {
   };
 
   return (
-    <div>
+    <div className="border-2 border-blue-100 rounded-lg pl-2 pr-2">
       {editToggle ? (
         <form onSubmit={handleEditList}>
           <input
@@ -63,7 +63,7 @@ const List = ({ name, id, onEditListName }) => {
         </form>
       ) : (
         <>
-          <h3>{name}</h3>
+          <h3 className="font-bold text-xl mt-3">{name}</h3>
           <button onClick={() => setEditToggle(true)}>Edit</button>
         </>
       )}
@@ -78,15 +78,16 @@ const List = ({ name, id, onEditListName }) => {
         />
       ))}
 
-      <form onSubmit={handleItemSubmit}>
+      <form onSubmit={handleItemSubmit} className="flex items-center justify-between mb-2">
         <input
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Enter new item"
           required
+          className="flex-grow border-2 border-blue-200 rounded-md px-2 py-1"
         />
-        <button type="submit" disabled={!input.trim()}>
+        <button type="submit" disabled={!input.trim()} className="bg-blue-400 hover:bg-blue-500 hover:cursor-pointer text-white w-[64px] h-9 mr-[6px] ml-3 rounded-md">
           Add
         </button>
       </form>

@@ -30,7 +30,7 @@ const Item = ({ value, id, onEditItemValue, onDeleteItem }) => {
       {editToggle ? (
         <form
           onSubmit={handleEditItem}
-          className="flex items-center mx-3 my-1 p-1 border-2 border-blue-100 rounded-md"
+          className="flex items-center my-1 p-1 border-2 border-blue-100 rounded-md"
         >
           <input
             type="text"
@@ -38,19 +38,19 @@ const Item = ({ value, id, onEditItemValue, onDeleteItem }) => {
             onChange={(e) => setEditInput(e.target.value)}
             placeholder="Edit item"
             required
-            className="flex-grow border-2 border-blue-200 rounded-md px-2"
+            className="flex-grow border-2 border-blue-100 rounded-md px-2"
           />
           <button
             type="submit"
             disabled={!editInput.trim()}
-            className="bg-green-300 ml-3 px-3 rounded-md"
+            className="bg-green-300 ml-3 px-3 h-7 rounded-md"
           >
             Confirm
           </button>
         </form>
       ) : (
         <div
-          className={`flex justify-between items-center ml-2 mr-3 my-1 p-1 border-2 ${
+          className={`flex justify-between items-center my-1 p-1 border-2 ${
             done ? "border-green-200" : "border-blue-100"
           } rounded-md ${done && "bg-green-100"}`}
         >
