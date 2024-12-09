@@ -32,20 +32,28 @@ const Home = () => {
 
   return (
     <div>
-      <form onSubmit={handleAddList}>
+      <form
+        onSubmit={handleAddList}
+        className="flex flex-col items-center justify-center mt-8 mb-4 p-6 rounded-lg w-full max-w-md mx-auto"
+      >
         <input
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Enter list name"
           required
+          className="w-full px-4 py-2 mb-4 border border-gray-300 rounded-md"
         />
-        <button type="submit" disabled={!input.trim()}>
+        <button
+          type="submit"
+          disabled={!input.trim()}
+          className="bg-blue-400 text-white px-6 py-2 rounded-md hover:bg-blue-500 disabled:opacity-50"
+        >
           Add List
         </button>
       </form>
 
-      <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2">
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 px-16 gap-8">
         {lists.map((list, index) => (
           <div key={list.id}>
             <List
@@ -53,7 +61,12 @@ const Home = () => {
               id={list.id}
               onEditListName={handleEditListName}
             />
-            <button onClick={() => handleDeleteList(list.id)}>Delete</button>
+            <button
+              className="w-full bg-red-400 hover:bg-red-500 text-white rounded-md py-2 mt-2"
+              onClick={() => handleDeleteList(list.id)}
+            >
+              Delete
+            </button>
           </div>
         ))}
       </div>

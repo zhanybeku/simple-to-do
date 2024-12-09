@@ -14,6 +14,10 @@ const Item = ({ value, id, onEditItemValue, onDeleteItem }) => {
       setEditToggle(false);
       setEditInput("");
     }
+    else {
+      setEditToggle(false);
+      setEditInput("");
+    }
   };
 
   const handleDeleteItem = (e) => {
@@ -37,15 +41,15 @@ const Item = ({ value, id, onEditItemValue, onDeleteItem }) => {
             value={editInput}
             onChange={(e) => setEditInput(e.target.value)}
             placeholder="Edit item"
-            required
+            //required
             className="flex-grow border-2 border-blue-100 rounded-md px-2"
           />
           <button
             type="submit"
-            disabled={!editInput.trim()}
-            className="bg-green-300 ml-3 px-3 h-7 rounded-md"
+            //disabled={!editInput.trim()}
+            className="bg-green-300 hover:bg-green-400 ml-3 px-3 h-7 w-[80px] rounded-md"
           >
-            Confirm
+            {!editInput.trim() ? "Cancel" : "Confirm"}
           </button>
         </form>
       ) : (
@@ -54,7 +58,7 @@ const Item = ({ value, id, onEditItemValue, onDeleteItem }) => {
             done ? "border-green-200" : "border-blue-100"
           } rounded-md ${done && "bg-green-100"}`}
         >
-          <div className="flex items-center">
+          <div className="flex items-center max-w-[70%]">
             <div className="mr-2 flex items-center justify-start">
               {done ? (
                 <MdCheckBox
@@ -71,7 +75,7 @@ const Item = ({ value, id, onEditItemValue, onDeleteItem }) => {
                 />
               )}
             </div>
-            <p> {value}</p>
+            <p className="break-words lg:max-w-[90%] md:max-w-[80%] sm:max-w-[80%]"> {value}</p>
           </div>
           <div className="flex items-center">
             <button

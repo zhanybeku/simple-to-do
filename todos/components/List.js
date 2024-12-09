@@ -21,6 +21,10 @@ const List = ({ name, id, onEditListName }) => {
       setEditToggle(false);
       setEditInput("");
     }
+    else {
+      setEditToggle(false);
+      setEditInput("");
+    }
   };
 
   const handleItemSubmit = (e) => {
@@ -47,25 +51,30 @@ const List = ({ name, id, onEditListName }) => {
   };
 
   return (
-    <div className="border-2 border-blue-100 rounded-lg pl-2 pr-2">
+    <div className="border-2 border-blue-100 rounded-lg pl-2 pr-2 pt-2">
       {editToggle ? (
-        <form onSubmit={handleEditList}>
+        <form onSubmit={handleEditList}
+        className="flex items-center justify-between mt-[10px] mb-[14px] rounded-md">
           <input
             type="text"
             value={editInput}
             onChange={(e) => setEditInput(e.target.value)}
             placeholder="Edit list name"
-            required
+            className="flex-grow border-2 border-blue-200 rounded-md px-2 py-1 max-w-[70%]"
           />
-          <button type="submit" disabled={!editInput.trim()}>
-            Confirm
+          <button
+            type="submit"
+            //disabled={!editInput.trim()}
+            className="bg-green-300 hover:bg-green-400 ml-3 px-3 h-9 w-[80px] rounded-md"
+          >
+            {!editInput.trim() ? "Cancel" : "Confirm"}
           </button>
         </form>
       ) : (
-        <>
-          <h3 className="font-bold text-xl mt-3">{name}</h3>
-          <button onClick={() => setEditToggle(true)}>Edit</button>
-        </>
+        <div className="flex items-center justify-between pl-2 my-3">
+          <h3 className="font-bold text-2xl break-words max-w-[70%]">{name}</h3>
+          <button className="bg-blue-400 hover:bg-blue-500 text-white rounded-md w-[64px] h-9 mr-[6px] ml-3 flex-shrink-0" onClick={() => setEditToggle(true)}>Edit</button>
+        </div>
       )}
 
       {items.map((item, index) => (
@@ -85,9 +94,9 @@ const List = ({ name, id, onEditListName }) => {
           onChange={(e) => setInput(e.target.value)}
           placeholder="Enter new item"
           required
-          className="flex-grow border-2 border-blue-200 rounded-md px-2 py-1"
+          className="flex-grow border-2 border-blue-200 rounded-md px-2 py-1 max-w-[70%]"
         />
-        <button type="submit" disabled={!input.trim()} className="bg-blue-400 hover:bg-blue-500 hover:cursor-pointer text-white w-[64px] h-9 mr-[6px] ml-3 rounded-md">
+        <button type="submit" disabled={!input.trim()} className="bg-blue-400 text-white hover:bg-blue-500 disabled:opacity-50 text-white w-[64px] h-9 mr-[6px] ml-3 rounded-md flex-shrink-0 disabled:opacity-50">
           Add
         </button>
       </form>
